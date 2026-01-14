@@ -73,17 +73,20 @@ export const ContactSection = () => {
 
             {/* Contact Info */}
             <div className="space-y-6 pt-8">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 border border-border flex items-center justify-center">
+              <a 
+                href="mailto:astitwasi@gmail.com"
+                className="flex items-center gap-4 group cursor-pointer"
+              >
+                <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary/10 transition-colors">
                   <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
                   <p className="text-sm font-mono text-muted-foreground">EMAIL</p>
-                  <p className="text-foreground font-medium">hello@pajero-obsession.com</p>
+                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">astitwasi@gmail.com</p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 border border-border flex items-center justify-center">
@@ -101,15 +104,14 @@ export const ContactSection = () => {
 
             {/* Social Links */}
             <div className="flex gap-4 pt-8">
-              {["Instagram", "YouTube", "Twitter"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="px-6 py-3 border border-border text-sm font-mono text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                >
-                  {social.toUpperCase()}
-                </a>
-              ))}
+              <a
+                href="https://www.instagram.com/thedarkcarnivore_?igsh=MWgydjlqeXlocnBvMg=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 border border-border text-sm font-mono text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+              >
+                INSTAGRAM
+              </a>
             </div>
           </div>
 
