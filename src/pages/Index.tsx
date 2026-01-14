@@ -1,13 +1,45 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Navigation } from "@/components/Navigation";
+import { HeroSection } from "@/components/HeroSection";
+import { StorySection } from "@/components/StorySection";
+import { MachinesSection } from "@/components/MachinesSection";
+import { LegacySection } from "@/components/LegacySection";
+import { MindBlowerSection } from "@/components/MindBlowerSection";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
+  useEffect(() => {
+    // Smooth scroll behavior
+    ScrollTrigger.defaults({
+      markers: false,
+    });
+
+    // Refresh ScrollTrigger after fonts load
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="relative">
+      <Navigation />
+      <HeroSection />
+      <StorySection />
+      <MachinesSection />
+      <LegacySection />
+      <MindBlowerSection />
+      <ContactSection />
+      <Footer />
+    </main>
   );
 };
 
