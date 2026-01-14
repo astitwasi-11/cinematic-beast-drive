@@ -91,19 +91,19 @@ export const HeroSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-24">
           {/* Left - Car Image */}
-          <div ref={carRef} className="relative order-2 lg:order-1">
+          <div ref={carRef} className="relative order-2 lg:order-1 -ml-16 lg:-ml-32">
             <div className="relative">
               {/* Glow effect behind car */}
-              <div className="absolute inset-0 bg-primary/10 blur-3xl scale-150" />
+              <div className="absolute inset-0 bg-primary/20 blur-[100px] scale-150" />
               
               <img
                 src={pajeroHero}
                 alt="Mitsubishi Pajero 4x4"
-                className="relative z-10 w-full h-auto max-w-3xl mx-auto drop-shadow-2xl"
+                className="relative z-10 w-[140%] max-w-none h-auto drop-shadow-2xl object-contain"
+                style={{ 
+                  filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.5))',
+                }}
               />
-              
-              {/* Mud splatter effect */}
-              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-20" />
             </div>
 
             {/* Floating specs */}
@@ -125,6 +125,10 @@ export const HeroSection = () => {
 
           {/* Right - Glass Panel Info */}
           <div ref={panelRef} className="order-1 lg:order-2 flex flex-col items-start lg:items-end">
+            {/* Brand Name */}
+            <p className="text-xs md:text-sm font-mono tracking-[0.3em] text-primary mb-2">
+              THEDARKCARNIVORE
+            </p>
             <h1
               ref={titleRef}
               className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-6 text-foreground"
