@@ -59,8 +59,8 @@ export const LegacySection = () => {
           />
         </div>
 
-        {/* Progress Bar */}
-        <div className="absolute left-8 top-1/2 -translate-y-1/2 h-64 w-0.5 bg-background/20">
+        {/* Progress Bar - Hidden on mobile, shown on tablet+ */}
+        <div className="hidden sm:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 h-48 md:h-64 w-0.5 bg-background/20">
           <div
             ref={progressRef}
             className="w-full bg-primary transition-all duration-300"
@@ -69,7 +69,7 @@ export const LegacySection = () => {
           {evolutionData.map((_, index) => (
             <div
               key={index}
-              className={`absolute w-3 h-3 -left-[5px] rounded-full transition-all duration-300 ${
+              className={`absolute w-2 md:w-3 h-2 md:h-3 -left-[3px] md:-left-[5px] rounded-full transition-all duration-300 ${
                 index <= activeIndex ? "bg-primary" : "bg-background/30"
               }`}
               style={{ top: `${(index / (evolutionData.length - 1)) * 100}%` }}
@@ -77,43 +77,43 @@ export const LegacySection = () => {
           ))}
         </div>
 
-        <div className="container mx-auto px-6 pl-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="container mx-auto px-4 sm:px-6 sm:pl-12 md:pl-20">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
             {/* Left - Year Display */}
-            <div className="relative">
-              <div className="text-[15rem] md:text-[20rem] font-bold leading-none text-primary/20 select-none">
+            <div className="relative flex justify-center lg:justify-start">
+              <div className="text-[6rem] sm:text-[10rem] md:text-[15rem] lg:text-[20rem] font-bold leading-none text-primary/20 select-none">
                 {evolutionData[activeIndex].year}
               </div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <span className="text-8xl md:text-9xl font-bold text-primary">
+                <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-primary">
                   {evolutionData[activeIndex].year}
                 </span>
               </div>
             </div>
 
             {/* Right - Content */}
-            <div className="space-y-8">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-0.5 bg-primary" />
-                <span className="text-sm font-mono text-primary tracking-widest">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4">
+                <div className="w-8 sm:w-16 h-0.5 bg-primary" />
+                <span className="text-xs sm:text-sm font-mono text-primary tracking-widest">
                   THE EVOLUTION
                 </span>
               </div>
 
-              <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-background">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-background">
                 {evolutionData[activeIndex].event}
               </h2>
 
-              <p className="text-xl text-background/70 leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg md:text-xl text-background/70 leading-relaxed max-w-lg mx-auto lg:mx-0">
                 {evolutionData[activeIndex].description}
               </p>
 
               {/* Timeline dots */}
-              <div className="flex gap-2 pt-8">
+              <div className="flex justify-center lg:justify-start gap-1.5 sm:gap-2 pt-4 sm:pt-8">
                 {evolutionData.map((_, index) => (
                   <div
                     key={index}
-                    className={`w-12 h-1 transition-all duration-300 ${
+                    className={`w-6 sm:w-8 md:w-12 h-1 transition-all duration-300 ${
                       index === activeIndex ? "bg-primary" : "bg-background/20"
                     }`}
                   />
@@ -124,8 +124,8 @@ export const LegacySection = () => {
         </div>
 
         {/* Large background text */}
-        <div className="absolute bottom-8 right-8 text-right">
-          <span className="text-sm font-mono text-background/30 tracking-widest">
+        <div className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 text-right hidden sm:block">
+          <span className="text-[10px] sm:text-xs font-mono text-background/30 tracking-widest">
             12 DAKAR VICTORIES • 39 YEARS OF LEGACY • ENDLESS ADVENTURE
           </span>
         </div>
