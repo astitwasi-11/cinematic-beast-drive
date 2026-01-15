@@ -45,8 +45,10 @@ export const HeroSection = () => {
           "-=0.6"
         );
 
-      // Parallax on mouse move
+      // Parallax on mouse move - only on desktop
       const handleMouseMove = (e: MouseEvent) => {
+        if (window.innerWidth < 768) return;
+        
         const { clientX, clientY } = e;
         const { innerWidth, innerHeight } = window;
         
@@ -86,20 +88,20 @@ export const HeroSection = () => {
       </div>
 
       {/* Red accent line */}
-      <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+      <div className="absolute top-0 left-0 w-1 h-full bg-primary hidden sm:block" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-24">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-20 sm:py-24">
           {/* Left - Car Image */}
-          <div ref={carRef} className="relative order-2 lg:order-1 -ml-16 lg:-ml-32">
+          <div ref={carRef} className="relative order-2 lg:order-1 -mx-4 sm:-ml-8 lg:-ml-32">
             <div className="relative">
               {/* Glow effect behind car */}
-              <div className="absolute inset-0 bg-primary/20 blur-[100px] scale-150" />
+              <div className="absolute inset-0 bg-primary/20 blur-[60px] sm:blur-[100px] scale-125 sm:scale-150" />
               
               <img
                 src={pajeroHero}
                 alt="Mitsubishi Pajero 4x4"
-                className="relative z-10 w-[140%] max-w-none h-auto drop-shadow-2xl object-contain"
+                className="relative z-10 w-full sm:w-[120%] lg:w-[140%] max-w-none h-auto drop-shadow-2xl object-contain"
                 style={{ 
                   filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.5))',
                 }}
@@ -107,16 +109,16 @@ export const HeroSection = () => {
             </div>
 
             {/* Floating specs */}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-8 text-sm font-mono text-muted-foreground">
+            <div className="absolute -bottom-2 sm:-bottom-4 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-mono text-muted-foreground">
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-primary animate-pulse" />
+                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary animate-pulse" />
                 4×4
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-primary animate-pulse" />
+                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-primary animate-pulse" />
                 3.2L DIESEL
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 hidden sm:flex">
                 <span className="w-2 h-2 bg-primary animate-pulse" />
                 200HP
               </span>
@@ -124,58 +126,57 @@ export const HeroSection = () => {
           </div>
 
           {/* Right - Glass Panel Info */}
-          <div ref={panelRef} className="order-1 lg:order-2 flex flex-col items-start lg:items-end">
+          <div ref={panelRef} className="order-1 lg:order-2 flex flex-col items-center lg:items-end text-center lg:text-right">
             {/* Brand Name */}
-            <p className="text-xs md:text-sm font-mono tracking-[0.3em] text-primary mb-2">
+            <p className="text-[10px] sm:text-xs md:text-sm font-mono tracking-[0.2em] sm:tracking-[0.3em] text-primary mb-2">
               THEDARKCARNIVORE
             </p>
             <h1
               ref={titleRef}
-              className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-6 text-foreground"
+              className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-4 sm:mb-6 text-foreground"
             >
               PAJERO
               <span className="block text-primary">4×4</span>
             </h1>
 
             {/* Glass Panel */}
-            <div className="relative mt-8 w-full max-w-md">
+            <div className="relative mt-6 sm:mt-8 w-full max-w-md">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent backdrop-blur-xl border border-border/50 shadow-2xl" />
               
-              <div className="relative p-8 space-y-6">
-                <div className="space-y-1">
-                  <p className="text-xs font-mono text-muted-foreground tracking-widest">MODEL</p>
-                  <p className="text-xl font-bold text-foreground">MITSUBISHI PAJERO V80</p>
+              <div className="relative p-6 sm:p-8 space-y-4 sm:space-y-6">
+                <div className="space-y-1 text-left">
+                  <p className="text-[10px] sm:text-xs font-mono text-muted-foreground tracking-widest">MODEL</p>
+                  <p className="text-lg sm:text-xl font-bold text-foreground">MITSUBISHI PAJERO V80</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-4 sm:gap-6 text-left">
                   <div className="space-y-1">
-                    <p className="text-xs font-mono text-muted-foreground tracking-widest">YEAR</p>
-                    <p className="text-lg font-bold text-foreground">2024</p>
+                    <p className="text-[10px] sm:text-xs font-mono text-muted-foreground tracking-widest">YEAR</p>
+                    <p className="text-base sm:text-lg font-bold text-foreground">2024</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-xs font-mono text-muted-foreground tracking-widest">ENGINE</p>
-                    <p className="text-lg font-bold text-foreground">3.2L TURBO</p>
+                    <p className="text-[10px] sm:text-xs font-mono text-muted-foreground tracking-widest">ENGINE</p>
+                    <p className="text-base sm:text-lg font-bold text-foreground">3.2L TURBO</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-xs font-mono text-muted-foreground tracking-widest">DRIVE</p>
-                    <p className="text-lg font-bold text-foreground">SUPER SELECT 4WD</p>
+                    <p className="text-[10px] sm:text-xs font-mono text-muted-foreground tracking-widest">DRIVE</p>
+                    <p className="text-base sm:text-lg font-bold text-foreground">SUPER SELECT 4WD</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-xs font-mono text-muted-foreground tracking-widest">TRANSMISSION</p>
-                    <p className="text-lg font-bold text-foreground">5-SPEED AUTO</p>
+                    <p className="text-[10px] sm:text-xs font-mono text-muted-foreground tracking-widest">TRANSMISSION</p>
+                    <p className="text-base sm:text-lg font-bold text-foreground">5-SPEED AUTO</p>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-border/50">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                <div className="pt-3 sm:pt-4 border-t border-border/50">
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed text-left">
                     Born from the Dakar Rally legacy. Built for the untamed wilderness. 
-                    The Pajero isn't just an SUV—it's a declaration of freedom, a 
-                    mechanical beast that transforms any terrain into an adventure.
+                    The Pajero isn't just an SUV—it's a declaration of freedom.
                   </p>
                 </div>
 
                 {/* CTA Button */}
-                <button className="group relative w-full py-4 bg-primary text-primary-foreground font-bold tracking-wider hover:bg-primary/90 transition-all overflow-hidden">
+                <button className="group relative w-full py-3 sm:py-4 bg-primary text-primary-foreground font-bold tracking-wider text-sm sm:text-base hover:bg-primary/90 transition-all overflow-hidden">
                   <span className="relative z-10">EXPLORE THE LEGEND</span>
                   <span className="absolute inset-0 bg-foreground translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
                   <span className="absolute inset-0 flex items-center justify-center text-background font-bold tracking-wider translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 delay-75">
@@ -189,9 +190,9 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span className="text-xs font-mono text-muted-foreground tracking-widest">SCROLL</span>
-        <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <span className="text-[10px] sm:text-xs font-mono text-muted-foreground tracking-widest">SCROLL</span>
+        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
       </div>

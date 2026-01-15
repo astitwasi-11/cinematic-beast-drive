@@ -31,17 +31,17 @@ export const MindBlowerSection = () => {
         const chars = textRef.current.querySelectorAll(".char");
         gsap.fromTo(
           chars,
-          { opacity: 0, y: 100, rotateX: -90 },
+          { opacity: 0, y: 50, rotateX: -90 },
           {
             opacity: 1,
             y: 0,
             rotateX: 0,
             duration: 1,
-            stagger: 0.05,
+            stagger: 0.03,
             ease: "power3.out",
             scrollTrigger: {
               trigger: textRef.current,
-              start: "top 80%",
+              start: "top 85%",
               toggleActions: "play none none reverse",
             },
           }
@@ -63,7 +63,7 @@ export const MindBlowerSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background py-32"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background py-16 sm:py-24 md:py-32"
     >
       {/* Animated background lines */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
@@ -83,49 +83,49 @@ export const MindBlowerSection = () => {
       </div>
 
       {/* Red accent */}
-      <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-primary/10 to-transparent" />
+      <div className="absolute top-0 right-0 w-1/3 sm:w-1/4 h-full bg-gradient-to-l from-primary/10 to-transparent" />
 
-      <div className="container mx-auto px-6 relative z-10 text-center">
-        <div ref={textRef} className="space-y-8">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center">
+        <div ref={textRef} className="space-y-4 sm:space-y-8">
           {/* Quote marks */}
-          <div className="text-9xl font-bold text-primary/20 leading-none">"</div>
+          <div className="text-6xl sm:text-8xl md:text-9xl font-bold text-primary/20 leading-none">"</div>
 
           {/* Main quote */}
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight -mt-16">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-tight -mt-8 sm:-mt-12 md:-mt-16">
             <span className="block">{splitText("MACHINES DON'T")}</span>
             <span className="block">{splitText("HAVE SOULS")}</span>
-            <span className="block mt-4 text-primary">{splitText("UNTIL YOU DRIVE THEM")}</span>
+            <span className="block mt-2 sm:mt-4 text-primary">{splitText("UNTIL YOU DRIVE THEM")}</span>
           </h2>
 
           {/* Closing quote */}
-          <div className="text-9xl font-bold text-primary/20 leading-none rotate-180">"</div>
+          <div className="text-6xl sm:text-8xl md:text-9xl font-bold text-primary/20 leading-none rotate-180">"</div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-24 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 sm:gap-8 mt-12 sm:mt-16 md:mt-24 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="text-6xl md:text-8xl font-bold text-primary">12</div>
-            <div className="text-sm font-mono text-muted-foreground tracking-widest mt-2">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-primary">12</div>
+            <div className="text-[10px] sm:text-xs md:text-sm font-mono text-muted-foreground tracking-widest mt-1 sm:mt-2">
               DAKAR WINS
             </div>
           </div>
           <div className="text-center">
-            <div className="text-6xl md:text-8xl font-bold text-foreground">39</div>
-            <div className="text-sm font-mono text-muted-foreground tracking-widest mt-2">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-foreground">39</div>
+            <div className="text-[10px] sm:text-xs md:text-sm font-mono text-muted-foreground tracking-widest mt-1 sm:mt-2">
               YEARS OF GLORY
             </div>
           </div>
           <div className="text-center">
-            <div className="text-6xl md:text-8xl font-bold text-primary">∞</div>
-            <div className="text-sm font-mono text-muted-foreground tracking-widest mt-2">
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-primary">∞</div>
+            <div className="text-[10px] sm:text-xs md:text-sm font-mono text-muted-foreground tracking-widest mt-1 sm:mt-2">
               ADVENTURES AHEAD
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="mt-24">
-          <button className="group relative px-12 py-6 border-2 border-foreground text-foreground font-bold tracking-wider overflow-hidden transition-colors hover:text-background">
+        <div className="mt-12 sm:mt-16 md:mt-24">
+          <button className="group relative px-8 sm:px-12 py-4 sm:py-6 border-2 border-foreground text-foreground font-bold tracking-wider text-sm sm:text-base overflow-hidden transition-colors hover:text-background">
             <span className="relative z-10">BEGIN YOUR ADVENTURE</span>
             <span className="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </button>
