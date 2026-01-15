@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,10 +38,25 @@ export const ContactSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your form submission logic here
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData,
+      });
+
+      if (error) throw error;
+
+      toast.success("Message sent! I'll get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -165,12 +183,13 @@ export const ContactSection = () => {
 
             <button
               type="submit"
-              className="group relative w-full py-5 mt-8 bg-primary text-primary-foreground font-bold tracking-wider overflow-hidden transition-all"
+              disabled={isSubmitting}
+              className="group relative w-full py-5 mt-8 bg-primary text-primary-foreground font-bold tracking-wider overflow-hidden transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="relative z-10">SEND MESSAGE</span>
+              <span className="relative z-10">{isSubmitting ? "SENDING..." : "SEND MESSAGE"}</span>
               <span className="absolute inset-0 bg-foreground -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
               <span className="absolute inset-0 flex items-center justify-center text-background font-bold tracking-wider -translate-x-full group-hover:translate-x-0 transition-transform duration-500 delay-75">
-                SEND MESSAGE
+                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
               </span>
             </button>
           </form>
